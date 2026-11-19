@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://c5l1tyrw6jmdx"]
 
 [ext_resource type="Script" uid="uid://cwcmscoaoxxi1" path="res://temp_player_2.gd" id="1_6abbs"]
+[ext_resource type="Texture2D" uid="uid://brgim7g3oahsh" path="res://art/dagon/dagonblock1.png" id="2_7gdxf"]
 [ext_resource type="Texture2D" uid="uid://28elyo7cbu28" path="res://art/dagon/dagon_idle_sketch_alt_spritesheet.png" id="2_8o4qn"]
 [ext_resource type="Texture2D" uid="uid://cqfranq4qs5cb" path="res://art/dagon/dagon_jump_sketch_alt_spritesheet.png" id="3_yoykn"]
 [ext_resource type="Texture2D" uid="uid://cdd3pud1wvftt" path="res://art/dagon/dagon_kick_sketch_alt_spritesheet.png" id="4_shihd"]
 [ext_resource type="Texture2D" uid="uid://cq6r7nkbgiqoc" path="res://art/dagon/dagon_punch_sketch_alt_spritesheet.png" id="5_7gdxf"]
+[ext_resource type="Texture2D" uid="uid://d1rs5fuly6ais" path="res://art/dagon/dagonstunblue.png" id="7_2djtv"]
+[ext_resource type="Texture2D" uid="uid://l75lt3rqlv6j" path="res://art/dagon/dagonstun2blue.png" id="8_1a2ig"]
 [ext_resource type="Texture2D" uid="uid://ctonw68my0eof" path="res://art/dagon/dagon_walk_sketch_alt_spritesheet.png" id="20_sislm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kfa4n"]
@@ -175,6 +178,14 @@ region = Rect2(7200, 4800, 2400, 2400)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_7gdxf")
+}],
+"loop": 0,
+"name": &"block",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_kfa4n")
 }, {
 "duration": 1.0,
@@ -282,6 +293,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("7_2djtv")
+}],
+"loop": 0,
+"name": &"stun",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_1a2ig")
+}],
+"loop": 0,
+"name": &"stun2",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_iw75d")
 }, {
 "duration": 1.0,
@@ -329,16 +356,18 @@ size = Vector2(183, 207)
 size = Vector2(140, 125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wily"]
-size = Vector2(140, 100)
+size = Vector2(240, 140)
 
 [node name="TempPlayer2" type="CharacterBody2D" unique_id=727183561]
 script = ExtResource("1_6abbs")
+punch_hitbox_size = Vector2(350, 140)
+punch_reach = 280.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=107237978]
 position = Vector2(-17.5, -190)
 scale = Vector2(0.35831955, 0.22281927)
 sprite_frames = SubResource("SpriteFrames_6abbs")
-animation = &"idle"
+animation = &"stun"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=702920677]
 shape = SubResource("RectangleShape2D_gxa32")

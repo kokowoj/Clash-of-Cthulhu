@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://ch78wdbniyt1y"]
+
+[ext_resource type="Script" uid="uid://cuj4mnler1l1o" path="res://victory_screen.gd" id="1_ed3bb"]
+[ext_resource type="Texture2D" uid="uid://ct6dalurc5kse" path="res://art/victory/victoryscreendagonbg.png" id="1_qyds8"]
+[ext_resource type="Texture2D" uid="uid://dlqkjpiuybmmr" path="res://art/dagon/dagoniconalt.png" id="2_hvtdh"]
+[ext_resource type="Texture2D" uid="uid://cj52d4etrkwjn" path="res://art/victory/victoryscreendagon.png" id="2_r8dr5"]
+[ext_resource type="Texture2D" uid="uid://bebi4xttdyot0" path="res://art/victory/victoryscreentextbox.png" id="3_r8dr5"]
+[ext_resource type="FontFile" uid="uid://cjxh1mnvxyvra" path="res://fonts/DRAGON HUNTER.otf" id="3_rax26"]
+[ext_resource type="FontFile" uid="uid://c16jxkc48qu2c" path="res://fonts/Alice_in_Wonderland_3.ttf" id="4_ik8t4"]
+[ext_resource type="FontFile" uid="uid://dlswgvvukub0m" path="res://fonts/Deutsch.ttf" id="6_n5yoo"]
+
+[sub_resource type="FontVariation" id="FontVariation_r8dr5"]
+base_font = ExtResource("3_rax26")
+
+[sub_resource type="FontVariation" id="FontVariation_rax26"]
+base_font = ExtResource("3_rax26")
+
+[sub_resource type="FontVariation" id="FontVariation_ik8t4"]
+base_font = ExtResource("4_ik8t4")
+
+[sub_resource type="FontVariation" id="FontVariation_n5yoo"]
+base_font = ExtResource("3_rax26")
+
+[sub_resource type="FontVariation" id="FontVariation_ed3bb"]
+base_font = ExtResource("6_n5yoo")
+
+[sub_resource type="FontVariation" id="FontVariation_858gf"]
+base_font = ExtResource("4_ik8t4")
+
+[node name="VictoryScreen" type="Control" unique_id=303972926]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ed3bb")
+player_2_victory_texture = ExtResource("2_hvtdh")
+
+[node name="Background" type="TextureRect" parent="." unique_id=886680589]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_qyds8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="WinnerArtwork" type="TextureRect" parent="." unique_id=890535090]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_r8dr5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="WinnerName" type="Label" parent="." unique_id=1665995153]
+layout_mode = 0
+offset_left = 1390.0
+offset_top = 110.0
+offset_right = 1870.0
+offset_bottom = 290.0
+theme_override_fonts/font = SubResource("FontVariation_r8dr5")
+theme_override_font_sizes/font_size = 150
+text = "DAGON"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinsLabel" type="Label" parent="." unique_id=1747057197]
+layout_mode = 0
+offset_left = 1390.0
+offset_top = 300.0
+offset_right = 1870.0
+offset_bottom = 520.0
+theme_override_fonts/font = SubResource("FontVariation_rax26")
+theme_override_font_sizes/font_size = 180
+text = "WINS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerLabel" type="Label" parent="." unique_id=521309427]
+layout_mode = 0
+offset_left = 1390.0
+offset_top = 525.0
+offset_right = 1870.0
+offset_bottom = 585.0
+theme_override_colors/font_color = Color(0.39607844, 0.8745098, 0.4862745, 1)
+theme_override_fonts/font = SubResource("FontVariation_ik8t4")
+theme_override_font_sizes/font_size = 50
+text = "PLAYER 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialogueBox" type="TextureRect" parent="." unique_id=1252290339]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_r8dr5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameBackground" type="ColorRect" parent="." unique_id=1492726050]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 645.0
+offset_right = 510.0
+offset_bottom = 733.0
+
+[node name="DialogueName" type="Label" parent="." unique_id=23607567]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 625.0
+offset_right = 510.0
+offset_bottom = 754.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_n5yoo")
+theme_override_font_sizes/font_size = 58
+text = "Dagon
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialogueText" type="Label" parent="." unique_id=478342429]
+layout_mode = 0
+offset_left = 239.0
+offset_top = 736.0
+offset_right = 1689.0
+offset_bottom = 881.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_ed3bb")
+theme_override_font_sizes/font_size = 90
+text = "Raaargh!"
+vertical_alignment = 1
+
+[node name="RematchButton" type="Button" parent="." unique_id=1216073991]
+custom_minimum_size = Vector2(500, 180)
+layout_mode = 0
+offset_left = 110.0
+offset_top = 875.0
+offset_right = 610.0
+offset_bottom = 1055.0
+theme_override_fonts/font = SubResource("FontVariation_858gf")
+theme_override_font_sizes/font_size = 48
+text = "REMATCH"
+
+[node name="CharacterButton" type="Button" parent="." unique_id=997712525]
+custom_minimum_size = Vector2(500, 180)
+layout_mode = 0
+offset_left = 710.0
+offset_top = 875.0
+offset_right = 1210.0
+offset_bottom = 1055.0
+theme_override_fonts/font = SubResource("FontVariation_858gf")
+theme_override_font_sizes/font_size = 48
+text = "CHARACTER"
+
+[node name="MainMenuButton" type="Button" parent="." unique_id=93642922]
+custom_minimum_size = Vector2(500, 180)
+layout_mode = 0
+offset_left = 1310.0
+offset_top = 875.0
+offset_right = 1810.0
+offset_bottom = 1055.0
+theme_override_fonts/font = SubResource("FontVariation_858gf")
+theme_override_font_sizes/font_size = 48
+text = "MAIN MENU"

@@ -331,7 +331,7 @@ theme_override_colors/checkbox_checked_color = Color(0.39607844, 0.8745098, 0.48
 text = "SUBTITLES"
 
 [node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=328510395]
-custom_minimum_size = Vector2(260, 75)
+custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 0.6)
@@ -342,7 +342,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_3ykye")
 text = "BACK"
 
 [node name="CreditsButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=705470807]
-custom_minimum_size = Vector2(260, 75)
+custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 0.6)

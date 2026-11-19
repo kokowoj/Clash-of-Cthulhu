@@ -1,5 +1,15 @@
 extends Control
 
+const MenuButtonStyle = preload(
+	"res://menu_button_style.gd"
+)
+
+@export var button_frame_png: Texture2D = preload(
+	"res://art/title/button.png"
+)
+
+var button_style = MenuButtonStyle.new()
+
 var settings_store: Node
 var display_option: OptionButton
 var resolution_option: OptionButton
@@ -17,10 +27,12 @@ const RESOLUTIONS = [
 func _ready() -> void:
 	_setup_navigation()
 
-	settings_store = get_node_or_null("/root/GameSettings")
+	settings_store = get_node_or_null(
+		"/root/GameSettings"
+	)
 
 	if settings_store == null:
-		push_error("GameSettings Autoload is missing.")
+		push_error("GameSettings Autoload is missing")
 		return
 
 	_setup_audio()
@@ -28,14 +40,22 @@ func _ready() -> void:
 	_setup_gameplay()
 
 
-
 func _setup_navigation() -> void:
 	var back_button = find_child(
 		"BackButton", true, false
-	) as BaseButton
+	) as Button
+
+	var credits_button = find_child(
+		"CreditsButton", true, false
+	) as Button
+
+	button_style.prepare(button_frame_png)
 
 	if back_button != null:
 		back_button.disabled = false
+		back_button.text = "BACK"
+
+		button_style.setup_button(back_button)
 
 		if not back_button.pressed.is_connected(
 			_on_back_button_pressed
@@ -44,12 +64,11 @@ func _setup_navigation() -> void:
 				_on_back_button_pressed
 			)
 
-	var credits_button = find_child(
-		"CreditsButton", true, false
-	) as BaseButton
-
 	if credits_button != null:
 		credits_button.disabled = false
+		credits_button.text = "CREDITS"
+
+		button_style.setup_button(credits_button)
 
 		if not credits_button.pressed.is_connected(
 			_on_credits_button_pressed
@@ -67,7 +86,7 @@ func _on_back_button_pressed() -> void:
 	_save_settings()
 
 	get_tree().change_scene_to_file(
-        "res://main_menu.tscn"
+		"res://main_menu.tscn"
 	)
 
 
@@ -79,7 +98,7 @@ func _on_credits_button_pressed() -> void:
 	_save_settings()
 
 	get_tree().change_scene_to_file(
-        "res://credits.tscn"
+		"res://credits.tscn"
 	)
 
 
@@ -87,7 +106,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
 		_on_back_button_pressed()
-
 
 
 func _setup_slider(
@@ -110,11 +128,11 @@ func _setup_slider(
 	slider.max_value = maximum
 	slider.step = increment
 	slider.page = 0.0
+
 	slider.set_value_no_signal(saved_value)
 
 	if not slider.value_changed.is_connected(callback):
 		slider.value_changed.connect(callback)
-
 
 
 func _setup_checkbox(
@@ -131,11 +149,11 @@ func _setup_checkbox(
 		return
 
 	checkbox.toggle_mode = true
+
 	checkbox.set_pressed_no_signal(saved_value)
 
 	if not checkbox.toggled.is_connected(callback):
 		checkbox.toggled.connect(callback)
-
 
 
 func _setup_audio() -> void:
@@ -192,8 +210,8 @@ func _update_audio(
 
 	settings_store.set(setting_name, value)
 	settings_store.call("apply_audio")
-	_save_settings()
 
+	_save_settings()
 
 
 func _setup_display() -> void:
@@ -206,11 +224,11 @@ func _setup_display() -> void:
 	) as OptionButton
 
 	if display_option == null:
-		push_error("DisplayModeOption not found.")
+		push_error("DisplayModeOption not found")
 		return
 
 	if resolution_option == null:
-		push_error("ResolutionOption not found.")
+		push_error("ResolutionOption not found")
 		return
 
 	display_option.clear()
@@ -232,7 +250,7 @@ func _setup_display() -> void:
 	resolution_option.fit_to_longest_item = true
 
 	var saved_size: Vector2i = settings_store.get(
-        "windowed_size"
+		"windowed_size"
 	)
 
 	var choices: Array[Vector2i] = []
@@ -257,7 +275,6 @@ func _setup_display() -> void:
 		if size == saved_size:
 			resolution_option.select(index)
 
-  
 	resolution_option.disabled = false
 
 	if not display_option.item_selected.is_connected(
@@ -305,10 +322,11 @@ func _apply_display_change() -> void:
 			return
 
 		var saved_size: Vector2i = settings_store.get(
-            "windowed_size"
+			"windowed_size"
 		)
 
 		var window = get_window()
+
 		window.size = saved_size
 		window.move_to_center()
 
@@ -342,10 +360,11 @@ func _apply_resolution_change() -> void:
 		return
 
 	var saved_size: Vector2i = settings_store.get(
-        "windowed_size"
+		"windowed_size"
 	)
 
 	var window = get_window()
+
 	window.size = saved_size
 	window.move_to_center()
 
@@ -385,6 +404,7 @@ func _on_subtitles_changed(enabled: bool) -> void:
 	)
 
 	_save_settings()
+
 
 func _save_settings() -> void:
 	if settings_store != null:

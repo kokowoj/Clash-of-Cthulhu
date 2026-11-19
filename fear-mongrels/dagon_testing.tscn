@@ -15,6 +15,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ixd0"]
 size = Vector2(1950.5, 8.75)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jram4"]
+size = Vector2(50, 1500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8wily"]
+size = Vector2(50, 1500)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oq137"]
 bg_color = Color(0.6, 0.6, 0.6, 0.20392157)
 
@@ -81,53 +87,85 @@ region = Rect2(3840, 2160, 1920, 1080)
 atlas = ExtResource("9_1ppgj")
 region = Rect2(5760, 2160, 1920, 1080)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ppgj"]
+atlas = ExtResource("10_v7icl")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7icl"]
+atlas = ExtResource("10_v7icl")
+region = Rect2(1920, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0wg8"]
+atlas = ExtResource("10_v7icl")
+region = Rect2(3840, 0, 1920, 1080)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jqkv2"]
 atlas = ExtResource("10_v7icl")
-region = Rect2(0, 0, 1920, 2160)
+region = Rect2(5760, 0, 1920, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2tnns"]
 atlas = ExtResource("10_v7icl")
-region = Rect2(1920, 0, 1920, 2160)
+region = Rect2(0, 1080, 1920, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_en10f"]
 atlas = ExtResource("10_v7icl")
-region = Rect2(3840, 0, 1920, 2160)
+region = Rect2(1920, 1080, 1920, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bx7eg"]
 atlas = ExtResource("10_v7icl")
-region = Rect2(5760, 0, 1920, 2160)
+region = Rect2(3840, 1080, 1920, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kjdl6"]
 atlas = ExtResource("10_v7icl")
-region = Rect2(0, 2160, 1920, 2160)
+region = Rect2(5760, 1080, 1920, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i2j1f"]
 atlas = ExtResource("10_v7icl")
-region = Rect2(1920, 2160, 1920, 2160)
+region = Rect2(0, 2160, 1920, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pypga"]
 atlas = ExtResource("10_v7icl")
-region = Rect2(3840, 2160, 1920, 2160)
+region = Rect2(1920, 2160, 1920, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ktba5"]
 atlas = ExtResource("10_v7icl")
-region = Rect2(5760, 2160, 1920, 2160)
+region = Rect2(3840, 2160, 1920, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fotv1"]
 atlas = ExtResource("10_v7icl")
-region = Rect2(0, 4320, 1920, 2160)
+region = Rect2(5760, 2160, 1920, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ad55d"]
 atlas = ExtResource("10_v7icl")
-region = Rect2(1920, 4320, 1920, 2160)
+region = Rect2(0, 3240, 1920, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r08ss"]
 atlas = ExtResource("10_v7icl")
-region = Rect2(3840, 4320, 1920, 2160)
+region = Rect2(1920, 3240, 1920, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5jwq7"]
 atlas = ExtResource("10_v7icl")
-region = Rect2(5760, 4320, 1920, 2160)
+region = Rect2(3840, 3240, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2x0c"]
+atlas = ExtResource("10_v7icl")
+region = Rect2(5760, 3240, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yruo4"]
+atlas = ExtResource("10_v7icl")
+region = Rect2(0, 4320, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yn1l0"]
+atlas = ExtResource("10_v7icl")
+region = Rect2(1920, 4320, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8jef"]
+atlas = ExtResource("10_v7icl")
+region = Rect2(3840, 4320, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xxdw"]
+atlas = ExtResource("10_v7icl")
+region = Rect2(5760, 4320, 1920, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7gpkl"]
 atlas = ExtResource("11_e0wg8")
@@ -221,45 +259,69 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.9,
+"texture": SubResource("AtlasTexture_1ppgj")
+}, {
+"duration": 0.9,
+"texture": SubResource("AtlasTexture_v7icl")
+}, {
+"duration": 0.9,
+"texture": SubResource("AtlasTexture_e0wg8")
+}, {
+"duration": 0.9,
 "texture": SubResource("AtlasTexture_jqkv2")
 }, {
-"duration": 1.0,
+"duration": 0.9,
 "texture": SubResource("AtlasTexture_2tnns")
 }, {
-"duration": 1.0,
+"duration": 0.9,
 "texture": SubResource("AtlasTexture_en10f")
 }, {
-"duration": 1.0,
+"duration": 0.9,
 "texture": SubResource("AtlasTexture_bx7eg")
 }, {
-"duration": 1.0,
+"duration": 0.9,
 "texture": SubResource("AtlasTexture_kjdl6")
 }, {
-"duration": 1.0,
+"duration": 0.9,
 "texture": SubResource("AtlasTexture_i2j1f")
 }, {
-"duration": 1.0,
+"duration": 0.9,
 "texture": SubResource("AtlasTexture_pypga")
 }, {
-"duration": 1.0,
+"duration": 0.9,
 "texture": SubResource("AtlasTexture_ktba5")
 }, {
-"duration": 1.0,
+"duration": 0.9,
 "texture": SubResource("AtlasTexture_fotv1")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_ad55d")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_r08ss")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_5jwq7")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_k2x0c")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_yruo4")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_yn1l0")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_u8jef")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_3xxdw")
 }],
 "loop": 0,
 "name": &"game_start",
-"speed": 10.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -322,6 +384,18 @@ position = Vector2(650, 960.5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1476399076]
 position = Vector2(973.25, 1032.625)
 shape = SubResource("RectangleShape2D_8ixd0")
+
+[node name="RightWall" type="StaticBody2D" parent="." unique_id=1125844124]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1590372932]
+position = Vector2(1685, 540)
+shape = SubResource("RectangleShape2D_jram4")
+
+[node name="LeftWall" type="StaticBody2D" parent="." unique_id=652310326]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=1939963942]
+position = Vector2(200, 540)
+shape = SubResource("RectangleShape2D_8wily")
 
 [node name="FightUI" type="CanvasLayer" parent="." unique_id=562930701]
 
@@ -436,3 +510,4 @@ mouse_filter = 2
 visible = false
 sprite_frames = SubResource("SpriteFrames_jram4")
 animation = &"game_start"
+frame_progress = 1.0

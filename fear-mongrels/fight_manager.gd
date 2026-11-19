@@ -26,10 +26,11 @@ extends Node2D
 @onready var announcement_background: ColorRect = \
 	$FightUI/AnnouncementBackground
 
-
 # Match settings
 const ROUND_DURATION: float = 99.0
 const WINS_NEEDED: int = 2
+
+const VICTORY_SCENE = "res://victory_screen.tscn"
 
 var round_time: float = ROUND_DURATION
 var round_number: int = 1
@@ -103,6 +104,7 @@ func _process(delta: float) -> void:
 		return
 
 	round_time = maxf(round_time - delta, 0.0)
+
 	_update_timer_display()
 
 	if round_time <= 0.0:
@@ -139,11 +141,13 @@ func _reset_fighters() -> void:
 
 func _start_round() -> void:
 	round_active = false
+
 	_set_fighters_enabled(false)
 
 	_reset_fighters()
 
 	round_time = ROUND_DURATION
+
 	_update_timer_display()
 
 	status_label.text = "ROUND " + str(round_number)
@@ -162,12 +166,15 @@ func _start_round() -> void:
 
 	# Enable fighters immediately
 	_set_fighters_enabled(true)
+
 	round_active = true
 
 	print("Round ", round_number, " started!")
 
 
-func _play_announcement(animation_name: String) -> void:
+func _play_announcement(
+	animation_name: String
+) -> void:
 	# Prepare the animation
 	announcement.animation = animation_name
 	announcement.frame = 0
@@ -182,14 +189,19 @@ func _play_announcement(animation_name: String) -> void:
 
 	# Get the size of an announcement frame
 	var sprite_frames: SpriteFrames = announcement.sprite_frames
-	var frame_texture: Texture2D = sprite_frames.get_frame_texture(
-		animation_name, 0
+
+	var frame_texture: Texture2D = (
+		sprite_frames.get_frame_texture(
+			animation_name,
+			0
+		)
 	)
 
 	if frame_texture == null:
 		push_error(
 			"Missing announcement frames: " + animation_name
 		)
+
 		return
 
 	var frame_size: Vector2 = frame_texture.get_size()
@@ -220,11 +232,15 @@ func _play_announcement(animation_name: String) -> void:
 	announcement_background.visible = false
 
 
-func _on_player_1_health_changed(new_health: int) -> void:
+func _on_player_1_health_changed(
+	new_health: int
+) -> void:
 	player_1_health_bar.value = new_health
 
 
-func _on_player_2_health_changed(new_health: int) -> void:
+func _on_player_2_health_changed(
+	new_health: int
+) -> void:
 	player_2_health_bar.value = new_health
 
 
@@ -264,6 +280,7 @@ func _finish_round(winner: int) -> void:
 		return
 
 	round_active = false
+
 	_set_fighters_enabled(false)
 
 	# Stop music when the round ends
@@ -275,10 +292,12 @@ func _finish_round(winner: int) -> void:
 func _resolve_round(winner: int) -> void:
 	if winner == 1:
 		player_1_wins += 1
+
 		status_label.text = "PLAYER 1 WINS ROUND!"
 
 	elif winner == 2:
 		player_2_wins += 1
+
 		status_label.text = "PLAYER 2 WINS ROUND!"
 
 	else:
@@ -306,36 +325,42 @@ func _resolve_round(winner: int) -> void:
 
 
 func _finish_match(winner: int) -> void:
+	if match_over:
+		return
+
 	match_over = true
 	round_active = false
 
 	_set_fighters_enabled(false)
 
-	# Fullscreen game finish announcement
+	status_label.visible = false
+
+	# Play the fullscreen game finish announcement
 	await _play_announcement("game_finish")
+
+	# Pass the winning player to the victory scene
+	get_tree().set_meta(
+		"victory_winner",
+		winner
+	)
 
 	# Play victory music once
 	AudioManager.play_victory_theme()
 
-	if winner == 1:
-		status_label.text = \
-			"PLAYER 1 WINS! PRESS R TO RESTART"
-	else:
-		status_label.text = \
-			"PLAYER 2 WINS! PRESS R TO RESTART"
+	print(
+		"GAME FINISH! Player ",
+		winner,
+		" wins!"
+	)
 
-	status_label.visible = true
+	# Transition to the victory screen
+	var error = get_tree().change_scene_to_file(
+		VICTORY_SCENE
+	)
 
-	print("GAME FINISH! Player ", winner, " wins!")
+	if error != OK:
+		get_tree().remove_meta("victory_winner")
 
-
-func _input(event: InputEvent) -> void:
-	if not match_over:
-		return
-
-	# Restart the match with R
-	if event is InputEventKey:
-		if event.pressed and not event.echo:
-			if event.keycode == KEY_R:
-				AudioManager.stop_music()
-				get_tree().reload_current_scene()
+		push_error(
+			"Unable to load the victory screen"
+		)
