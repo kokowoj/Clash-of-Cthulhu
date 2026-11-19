@@ -28,7 +28,7 @@ func _ready() -> void:
 		transition_player.bus = "SFX"
 
 	_set_loop(MAIN_THEME, false)
-	_set_loop(SELECT_FIGHTER, false)
+	_set_loop(SELECT_FIGHTER, true)
 	_set_loop(START_MATCH, false)
 	_set_loop(INTRO_THEME, false)
 	_set_loop(FIGHT_THEME, true)
@@ -38,6 +38,11 @@ func _ready() -> void:
 func _set_loop(stream: AudioStream, enabled: bool) -> void:
 	if stream is AudioStreamWAV:
 		if enabled:
+			if stream == SELECT_FIGHTER:
+				stream.loop_begin = 0
+				stream.loop_end = roundi(
+					stream.get_length() * stream.mix_rate
+				)
 			stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
 		else:
 			stream.loop_mode = AudioStreamWAV.LOOP_DISABLED
