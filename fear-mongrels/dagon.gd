@@ -9,10 +9,10 @@ func _init() -> void:
 
 func _configure_controls() -> void:
 	# Player 2 controls
-	left_action = "ui_left"
-	right_action = "ui_right"
+	left_action = "p1_left"
+	right_action = "p1_right"
 
-	jump_action = "ui_accept"
+	jump_action = "p1_jump"
 
 	punch_action = "punch"
 	kick_action = "kick"
